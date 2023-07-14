@@ -36,9 +36,11 @@ namespace ErrorHandling.Controllers
         {
        
                 _logger.LogInfo("Fetching all the Students from the storage");
-             
-                throw new Exception("Exception while fetching all the students from the storage.");
-                _logger.LogInfo($"Returning {students.Count} students.");
+            throw new AccessViolationException("Violation Exception while accessing the resource.");
+            
+            //throw new Exception("Exception while fetching all the students from the storage.");
+            
+            _logger.LogInfo($"Returning {students.Count} students.");
                 return Ok(students);
 
         }

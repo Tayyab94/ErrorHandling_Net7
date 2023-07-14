@@ -40,10 +40,17 @@ namespace ErrorHandling.CustomExceptionMiddleware
             context.Response.ContentType = "application/json";
 
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            var message = exception switch
+            {
+                AccessViolationException => "Access Voilation Error from the custom MiddleWare",
+                _ => "Internal Server Error from the Custom middleware"
+            };  
+
             await context.Response.WriteAsync(new ErrorDetails()
             {
                 StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error from the custom middleware."
+                Message = message
             }.ToString());
         }
     }
