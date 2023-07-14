@@ -1,4 +1,5 @@
-﻿using ErrorHandling.Models;
+﻿using ErrorHandling.CustomExceptionMiddleware;
+using ErrorHandling.Models;
 using LoggerService;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +33,11 @@ namespace ErrorHandling.Extensions
                     }
                 });
             });
+        }
+
+        public static void ConfiguraCustomExceptionMiddleware(this WebApplication app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
         }
     }
 }

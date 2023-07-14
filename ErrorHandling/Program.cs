@@ -18,7 +18,9 @@ builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
-app.ConfigureExceptionHandler(logger);
+//app.ConfigureExceptionHandler(logger);
+
+app.ConfiguraCustomExceptionMiddleware();
 
 if (app.Environment.IsProduction())
     app.UseHsts();
